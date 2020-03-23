@@ -17,24 +17,11 @@ public class StudentHomeworkJdbc {
     }
 
     public static boolean addStudentHomework(StudentHomework sh){
-        String url = "jdbc:mysql://127.0.0.1:3306/school";
-
-        String allUrl = url + "?user=root&password=123456";
-
-        String driverName = "com.mysql.cj.jdbc.Driver";
-
-        try {
-            // 加载驱动
-            Class.forName(driverName);
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
         String sqlString = "insert into s_student_homework (student_id,homework_id,homework_title,homework_content,create_time) values(?,?,?,?,?)";
 
         int resultSet = 0;
-        try (Connection connection = DriverManager.getConnection(allUrl)) {
+        try (Connection connection = Databasepool.getHikariDateSource().getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sqlString)) {
                 ps.setString(1,sh.getStudentId());
                 ps.setString(2,sh.getHomeworkId());
@@ -53,24 +40,11 @@ public class StudentHomeworkJdbc {
 
     public static List<StudentHomework> selectAll(){
 
-        String url = "jdbc:mysql://127.0.0.1:3306/school";
-
-        String allUrl = url + "?user=root&password=123456";
-
-        String driverName = "com.mysql.cj.jdbc.Driver";
 
         String sqlString = "SELECT * FROM s_student_homework";
 
-        try {
-            // 加载驱动
-            Class.forName(driverName);
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
         List<StudentHomework> list = new ArrayList<>();
-        try(Connection connection =  DriverManager.getConnection(allUrl)) {
+        try(Connection connection =  Databasepool.getHikariDateSource().getConnection()) {
             try(Statement statement = connection.createStatement()){
                 try(ResultSet resultSet = statement.executeQuery(sqlString)){
                     // 获取执行结果

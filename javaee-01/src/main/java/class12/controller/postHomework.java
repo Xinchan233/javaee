@@ -1,8 +1,7 @@
-package class12.servlet;
+package class12.controller;
 
 import class12.jdbc.HomeworkJdbc;
-import class12.jdbc.StudentJdbc;
-import class12.model.student;
+import class12.model.homework;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,22 +12,23 @@ import java.io.IOException;
 import java.util.Date;
 
 
-@WebServlet("/addstudent")
-public class addstudent extends HttpServlet {
+@WebServlet("/postHomework")
+public class postHomework extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");//设置编码，以防表单提交的内容乱码
 
-        student st = new student();
+        homework hk = new homework();
 
-        st.setId(req.getParameter("id"));
-        st.setName(req.getParameter("name"));
+        hk.setTitle(req.getParameter("title"));
+        hk.setContent(req.getParameter("content"));
         Date date = new Date();
-        st.setCreateTime(date);
+        hk.setCreateTime(date);
 
-        boolean result = StudentJdbc.addstudent(st);
+        boolean result = HomeworkJdbc.addHomework(hk);
 
-        req.getRequestDispatcher("allstudent.jsp").forward(req,resp);
+        req.setAttribute("type","postHomework");
+        req.getRequestDispatcher("allhomework.jsp").forward(req,resp);
     }
 }

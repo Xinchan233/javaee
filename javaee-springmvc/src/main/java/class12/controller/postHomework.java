@@ -1,7 +1,10 @@
-package class12.servlet;
+package class12.controller;
 
 import class12.jdbc.HomeworkJdbc;
 import class12.model.homework;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +15,10 @@ import java.io.IOException;
 import java.util.Date;
 
 
-@WebServlet("/postHomework")
+@Controller
 public class postHomework extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(value = "/postHomework",method = RequestMethod.POST)
+    protected String post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");//设置编码，以防表单提交的内容乱码
 
@@ -26,9 +29,8 @@ public class postHomework extends HttpServlet {
         Date date = new Date();
         hk.setCreateTime(date);
 
-        boolean result = HomeworkJdbc.addHomework(hk);
+        HomeworkJdbc.addHomework(hk);
 
-        req.setAttribute("type","postHomework");
-        req.getRequestDispatcher("allhomework.jsp").forward(req,resp);
+        return "allhomework.jsp";
     }
 }

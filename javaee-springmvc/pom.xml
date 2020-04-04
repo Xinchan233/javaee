@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javaee-01</artifactId>
+    <artifactId>javaee-springmvc</artifactId>
 
     <dependencies>
 
@@ -39,6 +39,11 @@
             <artifactId>HikariCP</artifactId>
             <version>3.4.2</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.5.RELEASE</version>
         </dependency>
 
     </dependencies>

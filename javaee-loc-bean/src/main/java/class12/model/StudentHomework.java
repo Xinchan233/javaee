@@ -1,14 +1,12 @@
 package class12.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
-/**
- * StudentHomework
- *
- * @author wangkm
- * @date 2020-03-05
- * @since 0.0.1
- */
+@Component
+@Scope("prototype")
 public class StudentHomework {
 
     private Long id;

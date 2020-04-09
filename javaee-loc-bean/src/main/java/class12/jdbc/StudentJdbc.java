@@ -1,7 +1,10 @@
 package class12.jdbc;
 
+import class12.model.homework;
 import class12.model.student;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
@@ -9,9 +12,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Configuration
 public class StudentJdbc {
 
+    private static ApplicationContext ct;
+    static{
+        ct=new AnnotationConfigApplicationContext(student.class);
+    }
     public static void main(String[] args) {
 
         List<student> list = selectAll();
@@ -53,7 +60,7 @@ public class StudentJdbc {
                 try(ResultSet resultSet = statement.executeQuery(sqlString)){
                     // 获取执行结果
                     while (resultSet.next()){
-                        student sh = new student();
+                        student sh=(student) ct.getBean("student");
                         sh.setId(resultSet.getString("id"));
                         sh.setName(resultSet.getString("name"));
                         sh.setCreateTime(resultSet.getTimestamp("create_time"));

@@ -2,6 +2,9 @@ package class12.jdbc;
 
 import class12.model.homework;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
@@ -9,8 +12,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Configuration
 public class HomeworkJdbc {
+    private static ApplicationContext ct;
+    static{
+        ct=new AnnotationConfigApplicationContext(homework.class);
+    }
 
     public static void main(String[] args) {
 
@@ -58,7 +65,7 @@ public class HomeworkJdbc {
                 try(ResultSet resultSet = statement.executeQuery(sqlString)){
                     // 获取执行结果
                     while (resultSet.next()){
-                        homework sh = new homework();
+                        homework sh =(homework)ct.getBean("homework");
                         sh.setId(resultSet.getLong("id"));
                         sh.setTitle(resultSet.getString("title"));
                         sh.setContent(resultSet.getString("content"));

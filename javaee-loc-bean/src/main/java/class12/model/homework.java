@@ -1,6 +1,11 @@
 package class12.model;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
+@Scope("prototype")
 public class homework{
         private long id;
         private String title;

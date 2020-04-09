@@ -2,6 +2,8 @@ package class12.controller;
 
 import class12.jdbc.HomeworkJdbc;
 import class12.model.homework;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +19,17 @@ import java.util.Date;
 
 @Controller
 public class postHomework extends HttpServlet {
+    private static ApplicationContext ct;
+    static{
+        ct=new AnnotationConfigApplicationContext(homework.class);
+    }
+
     @RequestMapping(value = "/postHomework",method = RequestMethod.POST)
     protected String post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");//设置编码，以防表单提交的内容乱码
 
-        homework hk = new homework();
+        homework hk = (homework)ct.getBean("homework");
 
         hk.setTitle(req.getParameter("title"));
         hk.setContent(req.getParameter("content"));

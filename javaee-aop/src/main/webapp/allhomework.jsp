@@ -1,4 +1,4 @@
-<%@ page import="class12.model.homework" %>
+<%@ page import="class12.model.Homework" %>
 <%@ page import="java.util.List" %>
 <%@ page import="class12.jdbc.HomeworkJdbc" %>
 
@@ -18,11 +18,11 @@
         <td>创建时间</td>
     </tr>
     <%
-        List<homework> list = HomeworkJdbc.selectAll();
+        List<Homework> list = HomeworkJdbc.selectAll();
         if(null == list || list.size() <= 0){
             out.print("None data.");
         }else {
-            for (homework sh : list){
+            for (Homework sh : list){
     %>
     <tr align="center" bgcolor="white" height="30">
         <td><%=sh.getId()%></td>

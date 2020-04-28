@@ -1,9 +1,7 @@
 package class12.controller;
 
 import class12.jdbc.HomeworkJdbc;
-import class12.jdbc.StudentHomeworkJdbc;
-import class12.model.StudentHomework;
-import class12.model.homework;
+import class12.model.Homework;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,19 +21,19 @@ import java.util.Date;
 
 @Aspect
 @Controller
-public class postHomework extends HttpServlet {
+public class PostHomework extends HttpServlet {
     private static ApplicationContext ct;
     static{
-        ct=new AnnotationConfigApplicationContext(homework.class);
+        ct=new AnnotationConfigApplicationContext(Homework.class);
     }
 
     @Before(value = "execution(* class12.jdbc.HomeworkJdbc.*(..)) && args(st)")
-    public void beforelog(homework st){
+    public void beforelog(Homework st){
         System.out.println("before添加作业");
     }
 
     @After(value = "execution(* class12.jdbc.HomeworkJdbc.*(..)) && args(st)")
-    public void afterlog(homework st){
+    public void afterlog(Homework st){
         System.out.println("after添加作业");
     }
 
@@ -45,7 +42,7 @@ public class postHomework extends HttpServlet {
 
         req.setCharacterEncoding("utf-8");//设置编码，以防表单提交的内容乱码
 
-        homework hk = (homework)ct.getBean("homework");
+        Homework hk = (Homework)ct.getBean("Homework");
 
         hk.setTitle(req.getParameter("title"));
         hk.setContent(req.getParameter("content"));

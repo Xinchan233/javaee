@@ -17,6 +17,8 @@
         <module>db</module>
         <module>javaee-springmvc</module>
         <module>javaee-aop</module>
+        <module>javaee-next</module>
+        <module>javaee-nett</module>
     </modules>
 
     <dependencies>

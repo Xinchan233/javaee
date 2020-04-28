@@ -1,10 +1,9 @@
 package class12.jdbc;
 
-import class12.model.homework;
+import class12.model.Homework;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
@@ -16,20 +15,20 @@ import java.util.List;
 public class HomeworkJdbc {
     private static ApplicationContext ct;
     static{
-        ct=new AnnotationConfigApplicationContext(homework.class);
+        ct=new AnnotationConfigApplicationContext(Homework.class);
     }
 
     public static void main(String[] args) {
 
 
-        List<homework> list = selectAll();
+        List<Homework> list = selectAll();
 
-        for (homework h : list){
+        for (Homework h : list){
             System.out.println(h.getContent());
         }
     }
 
-    public homework addHomework(homework h){
+    public Homework addHomework(Homework h){
 
         String sqlString = "insert into s_homework (title,content,create_time) values(?,?,?)";
         ApplicationContext ac = new ClassPathXmlApplicationContext("app-context.xml");
@@ -70,20 +69,20 @@ public class HomeworkJdbc {
 
     }
 
-    public static List<homework> selectAll(){
+    public static List<Homework> selectAll(){
 
         String sqlString = "SELECT * FROM s_homework";
 
         ApplicationContext ac = new ClassPathXmlApplicationContext("app-context.xml");
         DataSource ds = (DataSource)ac.getBean("datasource");
 
-        List<homework> list = new ArrayList<>();
+        List<Homework> list = new ArrayList<>();
         try(Connection connection =  ds.getConnection()) {
             try(Statement statement = connection.createStatement()){
                 try(ResultSet resultSet = statement.executeQuery(sqlString)){
                     // 获取执行结果
                     while (resultSet.next()){
-                        homework sh =(homework)ct.getBean("homework");
+                        Homework sh =(Homework)ct.getBean("Homework");
                         sh.setId(resultSet.getLong("id"));
                         sh.setTitle(resultSet.getString("title"));
                         sh.setContent(resultSet.getString("content"));

@@ -1,7 +1,6 @@
 package class12.jdbc;
 
 import class12.model.StudentHomework;
-import class12.model.homework;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;

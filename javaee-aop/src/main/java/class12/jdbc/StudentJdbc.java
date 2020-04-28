@@ -1,7 +1,6 @@
 package class12.jdbc;
 
-import class12.model.homework;
-import class12.model.student;
+import class12.model.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +16,15 @@ public class StudentJdbc {
 
     private static ApplicationContext ct;
     static{
-        ct=new AnnotationConfigApplicationContext(student.class);
+        ct=new AnnotationConfigApplicationContext(Student.class);
     }
     public static void main(String[] args) {
 
-        List<student> list = selectAll();
+        List<Student> list = selectAll();
 
     }
 
-    public student addstudent(student h){
+    public Student addstudent(Student h){
 
         String sqlString = "insert into s_student (id,name,create_time) values(?,?,?)";
         ApplicationContext ac = new ClassPathXmlApplicationContext("app-context.xml");
@@ -64,19 +63,19 @@ public class StudentJdbc {
 
     }
 
-    public static List<student> selectAll(){
+    public static List<Student> selectAll(){
 
         String sqlString = "SELECT * FROM s_student";
         ApplicationContext ac = new ClassPathXmlApplicationContext("app-context.xml");
         DataSource ds = (DataSource)ac.getBean("datasource");
 
-        List<student> list = new ArrayList<>();
+        List<Student> list = new ArrayList<>();
         try(Connection connection =  ds.getConnection()) {
             try(Statement statement = connection.createStatement()){
                 try(ResultSet resultSet = statement.executeQuery(sqlString)){
                     // 获取执行结果
                     while (resultSet.next()){
-                        student sh=(student) ct.getBean("student");
+                        Student sh=(Student) ct.getBean("Student");
                         sh.setId(resultSet.getString("id"));
                         sh.setName(resultSet.getString("name"));
                         sh.setCreateTime(resultSet.getTimestamp("create_time"));

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Component
 @Scope("prototype")
-public class student{
+public class Student {
     private String id;
     private String name;
     private Date createTime;
@@ -20,7 +20,6 @@ public class student{
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;

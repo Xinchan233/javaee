@@ -13,5 +13,5 @@
     <context:component-scan base-package="class12.controller"/>
     <context:component-scan base-package="class12.model"/>
     <context:component-scan base-package="class12.jdbc"/>
-    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="class12.aop"/>
 </beans>

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Component
 @Scope("prototype")
-public class homework{
+public class Homework {
         private long id;
         private String title;
         private String content;

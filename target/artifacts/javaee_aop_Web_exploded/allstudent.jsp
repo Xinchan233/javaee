@@ -1,4 +1,4 @@
-<%@ page import="class12.model.student" %>
+<%@ page import="class12.model.Student" %>
 <%@ page import="java.util.List" %>
 <%@ page import="class12.jdbc.StudentJdbc" %>
 
@@ -17,11 +17,11 @@
         <td>创建时间</td>
     </tr>
     <%
-        List<student> list = StudentJdbc.selectAll();
+        List<Student> list = StudentJdbc.selectAll();
         if(null == list || list.size() <= 0){
             out.print("None data.");
         }else {
-            for (student sh : list){
+            for (Student sh : list){
     %>
     <tr align="center" bgcolor="white" height="30">
         <td><%=sh.getId()%></td>

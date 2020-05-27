@@ -27,16 +27,6 @@ public class AddStudentHomeworkServlet extends HttpServlet {
         ct=new AnnotationConfigApplicationContext(StudentHomework.class);
     }
 
-    @Before(value = "execution(* class12.jdbc.StudentHomeworkJdbc.*(..)) && args(st)")
-    public void beforelog(StudentHomework st){
-        System.out.println("before添加学生作业");
-    }
-
-    @After(value = "execution(* class12.jdbc.StudentHomeworkJdbc.*(..)) && args(st)")
-    public void afterlog(StudentHomework st){
-        System.out.println("after添加学生作业");
-    }
-
     @RequestMapping(value = "/AddStudentHomeworkServlet",method = RequestMethod.POST)
     protected String post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");//设置编码，以防表单提交的内容乱码

@@ -26,17 +26,6 @@ public class PostHomework extends HttpServlet {
     static{
         ct=new AnnotationConfigApplicationContext(Homework.class);
     }
-
-    @Before(value = "execution(* class12.jdbc.HomeworkJdbc.*(..)) && args(st)")
-    public void beforelog(Homework st){
-        System.out.println("before添加作业");
-    }
-
-    @After(value = "execution(* class12.jdbc.HomeworkJdbc.*(..)) && args(st)")
-    public void afterlog(Homework st){
-        System.out.println("after添加作业");
-    }
-
     @RequestMapping(value = "/postHomework",method = RequestMethod.POST)
     protected String post(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

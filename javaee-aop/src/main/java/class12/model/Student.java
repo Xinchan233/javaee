@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * @author apple
+ */
 @Component
 @Scope("prototype")
 public class Student {

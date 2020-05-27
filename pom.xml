@@ -17,10 +17,12 @@
         <module>db</module>
         <module>javaee-springmvc</module>
         <module>javaee-aop</module>
-        <module>javaee-next</module>
-        <module>javaee-nett</module>
+        <module>javaee-mybatis</module>
+        <module>javaee-mybatis</module>
+        <module>javaee-springcloud</module>
     </modules>
 
+    <dependencyManagement>
     <dependencies>
 
         <dependency>
@@ -38,6 +40,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>3.4.2</version>
@@ -50,6 +59,7 @@
         </dependency>
 
     </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

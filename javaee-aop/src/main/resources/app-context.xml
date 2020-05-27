@@ -17,4 +17,9 @@
         <property name="password" value="123456"/>
     </bean>
 
+    <context:component-scan base-package="class12.controller"/>
+    <context:component-scan base-package="class12.model"/>
+    <context:component-scan base-package="class12.jdbc"/>
+    <context:component-scan base-package="class12.aop"/>
+
 </beans>

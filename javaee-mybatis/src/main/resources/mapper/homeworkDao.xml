@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.spring.mvc.dao.HomeworkDao">
+
+    <insert id="add" parameterType="Homework">
+        insert into s_homework (title,content,create_time) values(#{title},#{content},#{createTime})
+    </insert>
+    <update id="change"></update>
+    <delete id="delete"></delete>
+
+    <select id="selectAll" resultType="org.example.spring.mvc.model.Homework">
+        select * from s_homework
+    </select>
+    <select id="selectById" resultType="org.example.spring.mvc.model.Homework" parameterType="String">
+        select * from s_homework where id=#{id}
+    </select>
+</mapper>

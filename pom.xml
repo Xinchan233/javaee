@@ -20,6 +20,7 @@
         <module>javaee-mybatis</module>
         <module>javaee-mybatis</module>
         <module>javaee-springcloud</module>
+        <module>javaee-springcloud2</module>
     </modules>
 
     <dependencyManagement>

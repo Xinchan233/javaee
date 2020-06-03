@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          #  Git仓库地址
+          uri: https://github.com/Xinchan233/javaee
+          #  Git仓库用户名或邮箱
+          username:  Xinchan233
+          #  Git仓库密码
+          password: lingyin131214
+
+server:
+  # 指定端口号
+  port: 8888
